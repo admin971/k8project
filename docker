@@ -26,5 +26,5 @@ RUN rm -rf photogenic photogenic.zip
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
 # Expose port 80 for the web server
-EXPOSE 80 22
+EXPOSE 80 22 8080
 
