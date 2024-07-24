@@ -2,26 +2,29 @@
 FROM centos:latest
 
 # Maintainer information
-MAINTAINER vikashashoke@grail.c
+MAINTAINER vikashashoke@gmail.com
 
 # Install necessary packages
-RUN yum install -y unzip
+RUN yum install -y httpd zip unzip
 
 # Add the zip file to the container
-ADD https://ww.free-ess.com/path/to/photogenic.zip /var/www/html/
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
 
 # Set the working directory
-WORKDIR /var/www/html
+WORKDIR /var/www/html/
 
 # Unzip the photogenic.zip file
 RUN unzip photogenic.zip
 
-# Copy the unzipped contents to the desired location
-RUN cp -rvf photogenic/* /usr/sbin/httpd
+# Copy the unzipped contents to the current directory
+RUN cp -rvf photogenic/* .
 
 # Clean up by removing the photogenic directory and the zip file
 RUN rm -rf photogenic photogenic.zip
 
+# Start the Apache HTTP server
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
 # Expose port 80 for the web server
-EXPOSE 80
+EXPOSE 80 22
 
